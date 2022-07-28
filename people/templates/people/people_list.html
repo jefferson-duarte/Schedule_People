@@ -2,14 +2,19 @@
 
 {% block content %}
 
+    <form method="get">
+        <input type="text" name="name" placeholder="Buscar por nome">
+        <input type="submit" value="Buscar">
+    </form>
+
     <h1>List People</h1>
-    <a href="{% url 'new_people' %}">New People</a>
     <table>
         <thead>
             <tr>
                 <th>Name</th>
                 <th>Birth Date</th>
                 <th>Active</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -23,6 +28,10 @@
                         {% else %}
                             No
                         {% endif %}
+                    </td>
+                    <td>
+                        <a href="{% url 'update_people' people.pk %}">Update</a>
+                        <a href="{% url 'delete_people' people.pk %}">Delete</a>
                     </td>
                 </tr>
             {% endfor %}
