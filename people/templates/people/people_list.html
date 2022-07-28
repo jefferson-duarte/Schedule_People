@@ -1,0 +1,32 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+    <h1>List People</h1>
+    <a href="{% url 'new_people' %}">New People</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Birth Date</th>
+                <th>Active</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for people in object_list %}
+                <tr>
+                    <td>{{ people.full_name }}</td>
+                    <td>{{ people.birth_date|date:'SHORT_DATE_FORMAT' }}</td>
+                    <td>
+                        {% if people.active %}
+                            Yes
+                        {% else %}
+                            No
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock content %}
